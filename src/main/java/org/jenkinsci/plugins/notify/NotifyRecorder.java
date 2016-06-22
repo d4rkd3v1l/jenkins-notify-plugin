@@ -107,9 +107,8 @@ public class NotifyRecorder extends Recorder
     {
         this.listener              = notNull( listener, "Build listener" );
         boolean isIntermediateStep = build.getUrl().contains( "$" );
-        boolean isSuccessResult    = build.getResult().isBetterOrEqualTo( Result.SUCCESS );
 
-        if ( isIntermediateStep || TextUtils.isBlank ( notifyUrl ) || ( ! isSuccessResult )) { return true; }
+        if ( isIntermediateStep || TextUtils.isBlank ( notifyUrl )) { return true; }
 
         listener.getLogger().println( String.format( "Building notify JSON payload" ));
         String notifyJson = buildNotifyJson( build, build.getEnvironment( listener ));
